@@ -4,18 +4,20 @@ function App(){
 
    const [nome, setNome]  = useState('Ronaldo')
 
-  const Formulario = () => {
+  const Formulario = (props) => {
      return (
       <div>
        <input
+      placeholder={props.sombra}
       className="nome"
       onChange={(e)=>{setNome(e.target.value);}}
       name="nome"
       type="text" />
       <button
-      onClick={()=>{alert(nome);}}
+      onClick={()=>{(props.mensagem != null) ? alert(props.mensagem) :
+        alert("TEXTO PADRÃO")}}
       className="botao">
-     CLIQUE AQUI
+     {(props.textoBotao != null) ? props.textoBotao : "CLIQUE AQUI"}
      </button>   
       </div>
      )
@@ -25,9 +27,10 @@ function App(){
   return (
     <div>
       <h3>Pizzaria 2C</h3>
-     <Formulario/> 
-     <Formulario/> 
-     <Formulario/> 
+     <Formulario sombra = "Digite seu nome..." textoBotao ="ENVIAR NOME"  /> 
+     <Formulario sombra="Digite seu email" textoBotao = "E-MAIL"/> 
+     <Formulario sombra= "(11) 90000-0000" textoBotao="CELULAR"/> 
+     <Formulario mensagem = "Mensagem enviada PELO App" />
     </div>
   
   )
